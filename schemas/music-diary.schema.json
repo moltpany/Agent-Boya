@@ -88,12 +88,33 @@
               "target": { "type": "string", "minLength": 1 },
               "query": { "type": "string" }
             }
+          },
+          "place": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": ["name", "address", "certainty", "note", "source"],
+            "properties": {
+              "name": { "type": "string", "minLength": 1 },
+              "address": { "type": "string", "minLength": 1 },
+              "certainty": { "type": "string", "minLength": 1 },
+              "note": { "type": "string", "minLength": 1 },
+              "source": { "$ref": "#/$defs/source-lite" }
+            }
           }
         }
       }
     }
   },
   "$defs": {
+    "source-lite": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["label", "url"],
+      "properties": {
+        "label": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "format": "uri" }
+      }
+    },
     "source": {
       "type": "object",
       "additionalProperties": true,

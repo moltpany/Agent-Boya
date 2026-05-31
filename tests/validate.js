@@ -79,6 +79,13 @@ function validateMusicDiaryExample() {
     }
     assert(entry.source && entry.source.label && entry.source.url && entry.source.summary,
       `${entry.id} should include source label, url, and summary`);
+    if (entry.place !== undefined) {
+      const pl = entry.place;
+      assert(pl && pl.name && pl.address && pl.certainty && pl.note,
+        `${entry.id} place should include name, address, certainty, and note`);
+      assert(pl.source && pl.source.label && pl.source.url,
+        `${entry.id} place should include a source label and url`);
+    }
     if (entry.sources !== undefined) {
       assert(Array.isArray(entry.sources) && entry.sources.length >= 1, `${entry.id} sources should be a non-empty array`);
       for (const s of entry.sources) {

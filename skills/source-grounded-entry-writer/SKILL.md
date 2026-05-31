@@ -28,7 +28,8 @@ Use this skill when creating or changing Music Diary entries. It pairs with `por
    - `background` (创作背景) — composition date, place, dedication, premiere, who/why;
    - `meaning` (作品含义) — what the music expresses and why it matters; keep interpretation conservative.
 5. Cite generously: `source` is the primary official portal; add a `sources` array to include the primary plus any verified secondary sources (each with `label` + `url` + `summary`).
-6. Add `listening` with a clean search `query` (used to build YouTube/Bilibili/Spotify/Apple Music links).
+6. Optionally add a `place` (precise venue: `name`, `address`, `certainty`, `note`, `source`) so the map marker lands on a specific location rather than the city centre. Use verified coordinates only; never invent them. Mark `certainty` honestly: 高 for documented premiere venues, 中 for the composer's landmark/residence in the right city, 低 for city-level fallback — and explain in `note`.
+7. Add `listening` with a clean search `query` (used to build YouTube/Bilibili/Spotify/Apple Music links).
 6. Validate JSON syntax and required fields, then regenerate the `data/*.js` mirror.
 7. Update `content-audit.md` with the source type and any open items.
 
