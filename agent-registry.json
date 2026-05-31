@@ -1,0 +1,96 @@
+{
+  "repository": "Agent-Boya",
+  "description": "Source-grounded music storytelling: harvest authoritative composer portals, write cited entries, and publish dual-view (map + theme) static music diaries",
+  "version": "0.1.0",
+  "target_platform": "Codex/OpenClaw-style agent workflows",
+  "schemas": [
+    {
+      "id": "music-diary-dataset",
+      "file": "schemas/music-diary.schema.json",
+      "description": "JSON schema for a Music Diary dataset (themes + source-grounded entries)"
+    }
+  ],
+  "examples": [
+    {
+      "id": "music-diary",
+      "name": "Music Diary",
+      "description": "A Chinese dual-view music diary about love across classical music, organised by emotional theme and place",
+      "file": "examples/music-diary/music-diary.json"
+    }
+  ],
+  "skills": [
+    {
+      "id": "portal-source-harvester",
+      "name": "Portal Source Harvester",
+      "description": "Gather citable facts about musical works from authoritative composer portals and institutions, producing source-grounded candidate entries without copying portal text",
+      "status": "ready",
+      "file": "skills/portal-source-harvester/SKILL.md",
+      "triggers": [
+        "research a musical work",
+        "find an official composer portal source",
+        "harvest music sources",
+        "upgrade an entry source",
+        "verify premiere date and place"
+      ],
+      "outputs": [
+        "candidate entries",
+        "verified year and place",
+        "source label/url/summary",
+        "uncertainty notes"
+      ]
+    },
+    {
+      "id": "source-grounded-entry-writer",
+      "name": "Source-Grounded Entry Writer",
+      "description": "Create or revise Music Diary entries with conservative wording, citations, coordinates, theme assignments, and listening links",
+      "status": "ready",
+      "file": "skills/source-grounded-entry-writer/SKILL.md",
+      "triggers": [
+        "add music diary entries",
+        "revise a music entry",
+        "source-grounded music entry",
+        "assign emotional themes",
+        "fact-check a musical work"
+      ],
+      "outputs": [
+        "valid JSON entries",
+        "source summaries",
+        "theme assignments",
+        "listening links"
+      ]
+    },
+    {
+      "id": "dual-view-site-builder",
+      "name": "Dual-View Site Builder",
+      "description": "Build or adapt a no-backend static site that presents a Music Diary dataset as a synchronized Leaflet map view and theme view",
+      "status": "ready",
+      "file": "skills/dual-view-site-builder/SKILL.md",
+      "triggers": [
+        "build a music diary site",
+        "publish a music diary",
+        "make this dataset browsable",
+        "create a dual-view music site",
+        "adapt Music Diary into a template"
+      ],
+      "outputs": [
+        "static HTML/CSS/JS",
+        "leaflet map markers",
+        "theme groups",
+        "detail panel",
+        "sources section"
+      ]
+    }
+  ],
+  "discovery_keywords": [
+    "music-storytelling",
+    "source-grounded",
+    "static-site",
+    "leaflet",
+    "emotional-themes",
+    "classical-music",
+    "agent-workflow",
+    "json-schema",
+    "github-pages",
+    "music-diary"
+  ]
+}
