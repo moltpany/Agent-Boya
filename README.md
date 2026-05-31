@@ -12,8 +12,8 @@ Agent-Boya is not a hosted music platform and not a background service. It is a 
 
 - Harvest facts from authoritative composer portals and institutions — as **citations**, not copied text.
 - Write entries with conservative, source-grounded claims.
-- Store entries in a machine-readable JSON schema, grouped by emotional theme and place.
-- Build or maintain a static, dual-view site (map + theme) from that data.
+- Store entries in a machine-readable JSON schema, grouped into playlists (collections) and by place.
+- Build or maintain a static site (Leaflet map with detail popups + clickable playlist lists) from that data.
 - Keep examples small enough for GitHub Pages and local review.
 
 "Auto-sync to the website" means exactly this: you talk to Boya, Boya runs these skills to edit `data/music-diary.json` (and its `.js` mirror), validates, and commits. The repository is the record.
@@ -22,11 +22,11 @@ Agent-Boya is not a hosted music platform and not a background service. It is a 
 
 | Concept | Purpose |
 | --- | --- |
-| Music story | A self-contained dataset of works with themes, sources, and places |
-| Entry | One work: composer, year, place, coordinates, themes, blurb, source |
-| Theme | An emotional dimension (e.g. first love, passion, longing, opera) for the theme view |
+| Music story | A self-contained dataset of works with playlists, sources, and places |
+| Entry | One work: composer, year, place, coordinates, collections, blurb, source |
+| Collection (歌单) | A playlist such as love, night, piano, stage, farewell; a work may belong to several |
 | Source | A compact citation label, URL, and summary supporting the entry |
-| Dual-view site | A no-backend HTML/CSS/JS layer rendering the data as a map view and a theme view |
+| Dual-view site | A no-backend HTML/CSS/JS layer rendering the data as a Leaflet map (popups jump to detail) plus clickable playlist lists |
 
 ## Core skills
 
@@ -34,7 +34,7 @@ Agent-Boya is not a hosted music platform and not a background service. It is a 
 | --- | --- | --- |
 | `portal-source-harvester` | Ready | Gathers citable facts from authoritative composer portals without copying their prose |
 | `source-grounded-entry-writer` | Ready | Drafts and revises entries without inventing facts |
-| `dual-view-site-builder` | Ready | Builds or adapts a static map + theme site from a valid dataset |
+| `dual-view-site-builder` | Ready | Builds or adapts a static map + playlists site from a valid dataset |
 
 ## Repository structure
 
@@ -88,8 +88,8 @@ examples/music-diary/music-diary.json
 | Module | Status | Description |
 | --- | --- | --- |
 | Framework README | Ready | Project positioning and usage |
-| Music Diary schema | Ready | Shared JSON contract for entries and themes |
-| Music Diary example | Ready | First case study (love across classical music) |
+| Music Diary schema | Ready | Shared JSON contract for collections and entries |
+| Music Diary example | Ready | First case study (multiple playlists; love is one) |
 | Portal source upgrades | Next | Replace encyclopedia starters with official composer portals |
 | Source audit helper | Next | Optional script to report missing or weak source fields |
 | Multi-story examples | Later | Other themes, eras, or single-composer diaries |

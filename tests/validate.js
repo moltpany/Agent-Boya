@@ -44,10 +44,10 @@ function validateRegistry() {
 function validateSchema() {
   const schema = readJson("schemas/music-diary.schema.json");
   assert(schema.type === "object", "music diary schema should validate an object");
-  assert(Array.isArray(schema.required) && schema.required.includes("themes") && schema.required.includes("entries"),
-    "schema should require themes and entries");
+  assert(Array.isArray(schema.required) && schema.required.includes("collections") && schema.required.includes("entries"),
+    "schema should require collections and entries");
   const entryRequired = schema.properties.entries.items.required;
-  for (const field of ["id", "title", "work", "composer", "year", "city", "country", "lat", "lng", "themes", "blurb", "source"]) {
+  for (const field of ["id", "title", "work", "composer", "year", "city", "country", "lat", "lng", "collections", "blurb", "source"]) {
     assert(entryRequired.includes(field), `schema entries should require ${field}`);
   }
 }
@@ -55,12 +55,12 @@ function validateSchema() {
 function validateMusicDiaryExample() {
   const data = readJson("examples/music-diary/music-diary.json");
   assert(data && typeof data === "object" && !Array.isArray(data), "Music Diary example should be an object");
-  assert(Array.isArray(data.themes) && data.themes.length >= 1, "example should define at least one theme");
+  assert(Array.isArray(data.collections) && data.collections.length >= 1, "example should define at least one collection");
   assert(Array.isArray(data.entries) && data.entries.length >= 12, "example should include a substantial dataset");
 
-  const themeIds = new Set(data.themes.map((t) => t.id));
-  for (const theme of data.themes) {
-    assert(theme.id && theme.name, `theme should include id and name: ${theme.id}`);
+  const collectionIds = new Set(data.collections.map((c) => c.id));
+  for (const collection of data.collections) {
+    assert(collection.id && collection.title, `collection should include id and title: ${collection.id}`);
   }
 
   const ids = new Set();
@@ -73,9 +73,9 @@ function validateMusicDiaryExample() {
     assert(Number.isInteger(entry.year), `${entry.id} year should be an integer`);
     assert(typeof entry.lat === "number" && entry.lat >= -90 && entry.lat <= 90, `${entry.id} should include valid latitude`);
     assert(typeof entry.lng === "number" && entry.lng >= -180 && entry.lng <= 180, `${entry.id} should include valid longitude`);
-    assert(Array.isArray(entry.themes) && entry.themes.length >= 1, `${entry.id} should include at least one theme`);
-    for (const tid of entry.themes) {
-      assert(themeIds.has(tid), `${entry.id} references undefined theme: ${tid}`);
+    assert(Array.isArray(entry.collections) && entry.collections.length >= 1, `${entry.id} should belong to at least one collection`);
+    for (const cid of entry.collections) {
+      assert(collectionIds.has(cid), `${entry.id} references undefined collection: ${cid}`);
     }
     assert(entry.source && entry.source.label && entry.source.url && entry.source.summary,
       `${entry.id} should include source label, url, and summary`);

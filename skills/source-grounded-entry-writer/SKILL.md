@@ -1,6 +1,6 @@
 ---
 name: source-grounded-entry-writer
-description: Write, revise, or fact-check Music Diary entries with reliable sources, conservative claims, coordinates, theme assignments, and listening links. Use when adding entries to a Music Diary dataset (data/music-diary.json) or refining existing works.
+description: Write, revise, or fact-check Music Diary entries with reliable sources, conservative claims, coordinates, collection (playlist) assignments, and listening links. Use when adding entries to a Music Diary dataset (data/music-diary.json) or refining existing works.
 ---
 
 # Source-Grounded Entry Writer
@@ -14,14 +14,15 @@ Use this skill when creating or changing Music Diary entries. It pairs with `por
 - Prefer city-level wording when a precise venue or composing location is uncertain.
 - Keep `source.label`, `source.url`, and `source.summary` compact and verifiable.
 - Keep user-facing copy in the project's language (Music Diary is Chinese-first).
-- Assign `themes` only when the emotional grouping is justified; a work may belong to more than one.
+- Prefer official composer portals/institutions for sources; fall back to authoritative score archives (e.g. IMSLP) only when no per-work official page is verifiable, and log the fallback in `content-audit.md`.
+- Assign `collections` (playlists) only when the grouping is justified; a work may belong to more than one. An optional `mood` tag can carry the emotional flavour.
 - For interpretive claims ("a love letter to ..."), use "通常被认为" / "常被解读为" unless a source documents the intention.
 
 ## Entry workflow
 
-1. Confirm the dataset shape against `schemas/music-diary.schema.json` and the existing `themes` ids.
+1. Confirm the dataset shape against `schemas/music-diary.schema.json` and the existing `collections` ids.
 2. Take cited facts from `portal-source-harvester`.
-3. Draft the entry with all required fields: `id`, `title`, `work`, `composer`, `year`, `city`, `country`, `lat`, `lng`, `themes`, `blurb`, `source`.
+3. Draft the entry with all required fields: `id`, `title`, `work`, `composer`, `year`, `city`, `country`, `lat`, `lng`, `collections`, `blurb`, `source` (plus an optional `mood`).
 4. Write `blurb` as a short "why it matters" paragraph grounded in the source; weave in the verified year/place.
 5. Add `listening` with a clean search `query` (used to build YouTube/Bilibili/Spotify/Apple Music links).
 6. Validate JSON syntax and required fields, then regenerate the `data/*.js` mirror.

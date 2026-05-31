@@ -10,21 +10,25 @@ This is Agent-Boya's first case study — a Chinese, dual-view diary of **love a
 
 `music-diary.json` is a copy of the work's authoritative dataset. It is intentionally compatible with `schemas/music-diary.schema.json`:
 
-- a top-level `themes` array — the emotional dimensions used by the theme view
+- a top-level `collections` array — the playlists (歌单) used by the collection lists
 - a top-level `entries` array — one object per work, each carrying:
   - `composer`, `year`, `city`, `country`, `lat`, `lng`
-  - `themes` (one or more emotional dimensions)
+  - `collections` (one or more playlists the work belongs to)
+  - optional `mood` (a short emotional-flavour tag)
   - `blurb` (a short "why it matters" paragraph)
   - `source` (`label` + `url` + `summary`)
   - optional `listening` (a search `query` used to build streaming links)
 
-## The four themes
+## The playlists
 
-1. `first-love` — 初恋的悸动与朦胧
-2. `passion` — 炽热的渴望与激情
-3. `longing` — 忧伤的离别与思念
-4. `opera` — 歌剧舞台上的爱情宣言
+1. `love` — 爱情（古典音乐中的爱情；内部保留初恋 / 激情 / 思念 / 歌剧的情感色彩）
+2. `night` — 深夜与月光
+3. `piano` — 钢琴独语
+4. `stage` — 歌剧舞台
+5. `farewell` — 思念与告别
+
+A work can belong to several playlists (e.g. Saint-Saëns' *Le Cygne* is in `love`, `night`, and `farewell`).
 
 ## Source policy
 
-Every entry carries a verifiable source. The first version uses authoritative encyclopedia entries as a starting point (stable URLs, easy to verify); Boya's `portal-source-harvester` upgrades these to official composer portals and institutions over time, taking citations rather than copying portal text.
+Every entry carries a verifiable source from an **official composer portal or research institution** (Beethoven-Haus Bonn, Schumann-Portal, NIFC for Chopin, Brahms-Portal, Mahler Foundation, Palazzetto Bru Zane, Centro Studi Giacomo Puccini, Stiftung Mozarteum, etc.). Where no per-work official page is verifiable, an authoritative score archive (IMSLP) is used and noted in `content-audit.md`. Boya's `portal-source-harvester` takes citations rather than copying portal text.

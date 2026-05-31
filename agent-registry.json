@@ -42,40 +42,40 @@
     {
       "id": "source-grounded-entry-writer",
       "name": "Source-Grounded Entry Writer",
-      "description": "Create or revise Music Diary entries with conservative wording, citations, coordinates, theme assignments, and listening links",
+      "description": "Create or revise Music Diary entries with conservative wording, citations, coordinates, collection (playlist) assignments, and listening links",
       "status": "ready",
       "file": "skills/source-grounded-entry-writer/SKILL.md",
       "triggers": [
         "add music diary entries",
         "revise a music entry",
         "source-grounded music entry",
-        "assign emotional themes",
+        "assign works to playlists",
         "fact-check a musical work"
       ],
       "outputs": [
         "valid JSON entries",
         "source summaries",
-        "theme assignments",
+        "collection assignments",
         "listening links"
       ]
     },
     {
       "id": "dual-view-site-builder",
       "name": "Dual-View Site Builder",
-      "description": "Build or adapt a no-backend static site that presents a Music Diary dataset as a synchronized Leaflet map view and theme view",
+      "description": "Build or adapt a no-backend static site that presents a Music Diary dataset as a Leaflet map (popups jump to a shared detail panel) plus clickable collection (playlist) lists",
       "status": "ready",
       "file": "skills/dual-view-site-builder/SKILL.md",
       "triggers": [
         "build a music diary site",
         "publish a music diary",
         "make this dataset browsable",
-        "create a dual-view music site",
+        "create a map and playlist music site",
         "adapt Music Diary into a template"
       ],
       "outputs": [
         "static HTML/CSS/JS",
-        "leaflet map markers",
-        "theme groups",
+        "leaflet map markers with detail popups",
+        "clickable collection lists",
         "detail panel",
         "sources section"
       ]
