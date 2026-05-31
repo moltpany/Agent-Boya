@@ -47,7 +47,7 @@ function validateSchema() {
   assert(Array.isArray(schema.required) && schema.required.includes("collections") && schema.required.includes("entries"),
     "schema should require collections and entries");
   const entryRequired = schema.properties.entries.items.required;
-  for (const field of ["id", "title", "work", "composer", "year", "city", "country", "lat", "lng", "collections", "blurb", "source"]) {
+  for (const field of ["id", "title", "work", "composer", "year", "city", "country", "lat", "lng", "collections", "blurb", "background", "meaning", "source"]) {
     assert(entryRequired.includes(field), `schema entries should require ${field}`);
   }
 }
@@ -67,7 +67,7 @@ function validateMusicDiaryExample() {
   for (const entry of data.entries) {
     assert(entry.id && !ids.has(entry.id), `entry id should be unique: ${entry.id}`);
     ids.add(entry.id);
-    for (const field of ["title", "work", "composer", "year", "city", "country", "lat", "lng", "blurb"]) {
+    for (const field of ["title", "work", "composer", "year", "city", "country", "lat", "lng", "blurb", "background", "meaning"]) {
       assert(entry[field] !== undefined && entry[field] !== "", `${entry.id} should include ${field}`);
     }
     assert(Number.isInteger(entry.year), `${entry.id} year should be an integer`);
@@ -79,6 +79,12 @@ function validateMusicDiaryExample() {
     }
     assert(entry.source && entry.source.label && entry.source.url && entry.source.summary,
       `${entry.id} should include source label, url, and summary`);
+    if (entry.sources !== undefined) {
+      assert(Array.isArray(entry.sources) && entry.sources.length >= 1, `${entry.id} sources should be a non-empty array`);
+      for (const s of entry.sources) {
+        assert(s && s.label && s.url && s.summary, `${entry.id} each source should include label, url, and summary`);
+      }
+    }
   }
 }
 

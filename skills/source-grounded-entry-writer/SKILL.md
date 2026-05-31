@@ -22,9 +22,13 @@ Use this skill when creating or changing Music Diary entries. It pairs with `por
 
 1. Confirm the dataset shape against `schemas/music-diary.schema.json` and the existing `collections` ids.
 2. Take cited facts from `portal-source-harvester`.
-3. Draft the entry with all required fields: `id`, `title`, `work`, `composer`, `year`, `city`, `country`, `lat`, `lng`, `collections`, `blurb`, `source` (plus an optional `mood`).
-4. Write `blurb` as a short "why it matters" paragraph grounded in the source; weave in the verified year/place.
-5. Add `listening` with a clean search `query` (used to build YouTube/Bilibili/Spotify/Apple Music links).
+3. Draft the entry with all required fields: `id`, `title`, `work`, `composer`, `year`, `city`, `country`, `lat`, `lng`, `collections`, `blurb`, `background`, `meaning`, `source` (plus an optional `mood`).
+4. Write the three text fields, all grounded in the sources:
+   - `blurb` — a one-line teaser (used in cards/popups);
+   - `background` (创作背景) — composition date, place, dedication, premiere, who/why;
+   - `meaning` (作品含义) — what the music expresses and why it matters; keep interpretation conservative.
+5. Cite generously: `source` is the primary official portal; add a `sources` array to include the primary plus any verified secondary sources (each with `label` + `url` + `summary`).
+6. Add `listening` with a clean search `query` (used to build YouTube/Bilibili/Spotify/Apple Music links).
 6. Validate JSON syntax and required fields, then regenerate the `data/*.js` mirror.
 7. Update `content-audit.md` with the source type and any open items.
 
