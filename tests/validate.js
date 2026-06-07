@@ -92,6 +92,10 @@ function validateMusicDiaryExample() {
         assert(s && s.label && s.url && s.summary, `${entry.id} each source should include label, url, and summary`);
       }
     }
+    if (entry.quote !== undefined) {
+      assert(entry.quote && entry.quote.text && entry.quote.source && entry.quote.source.url,
+        `${entry.id} quote should include text and a source with a url`);
+    }
   }
 }
 

@@ -80,6 +80,16 @@
             "minItems": 1,
             "items": { "$ref": "#/$defs/source" }
           },
+          "quote": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Optional. A verified composer note / creative insight, with a source.",
+            "required": ["text", "source"],
+            "properties": {
+              "text": { "type": "string", "minLength": 1 },
+              "source": { "$ref": "#/$defs/source-lite" }
+            }
+          },
           "listening": {
             "type": "object",
             "additionalProperties": true,
