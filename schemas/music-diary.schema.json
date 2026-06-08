@@ -28,7 +28,10 @@
         "properties": {
           "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
           "title": { "type": "string", "minLength": 1 },
-          "description": { "type": "string" }
+          "description": { "type": "string" },
+          "kind": { "type": "string", "enum": ["playlist", "concert"], "description": "Optional. Renders under the playlists section (default) or the concerts section." },
+          "order": { "type": "string", "enum": ["asis"], "description": "Optional. 'asis' keeps dataset order (e.g. a concert program) instead of sorting by year." },
+          "badge": { "type": "string", "description": "Optional short label shown on the collection card, e.g. '★ heard live'." }
         }
       }
     },
