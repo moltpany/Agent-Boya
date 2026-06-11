@@ -32,7 +32,18 @@
           "intro": { "type": "string", "description": "Optional longer playlist-level guide (why these pieces / how to listen), rendered as a callout below the one-line description." },
           "kind": { "type": "string", "enum": ["playlist", "concert"], "description": "Optional. Renders under the playlists section (default) or the concerts section." },
           "order": { "type": "string", "enum": ["asis"], "description": "Optional. 'asis' keeps dataset order (e.g. a concert program) instead of sorting by year." },
-          "badge": { "type": "string", "description": "Optional short label shown on the collection card, e.g. '★ heard live'." }
+          "badge": { "type": "string", "description": "Optional short label shown on the collection card, e.g. '★ heard live'." },
+          "en": {
+            "type": "object",
+            "description": "Optional English translations for this collection. Any field present overrides the default (Chinese) for English mode; missing fields fall back to the default.",
+            "additionalProperties": false,
+            "properties": {
+              "title": { "type": "string" },
+              "description": { "type": "string" },
+              "intro": { "type": "string" },
+              "badge": { "type": "string" }
+            }
+          }
         }
       }
     },
